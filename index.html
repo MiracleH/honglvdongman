@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>红叶动漫</title>
+    <link rel="stylesheet" href="./lib/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="./lib/swiper/css/swiper.min.css">
+</head>
+<body>
+    <header id="header">
+        <div class="topbar">
+            <div class="container">
+                <div class="row">
+                    <nav class="navbar navbar-default" role="navigation">
+                    <div class="container-fluid">
+                    <div class="navbar-header">
+                        <!--导航按钮-->
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#example-navbar-collapse">
+                            <span class="sr-only">切换导航</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <!--大标题-->
+                        <a class="navbar-brand text-center" href="#">红叶动漫</a>
+                        <!--搜索按钮-->
+                        <button type="button" class="btn btn-default search">
+                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                        </button>
+                    </div>
+                    <!--导航下拉菜单-->
+                    <div class="collapse navbar-collapse" id="example-navbar-collapse">
+                         <ul class="nav navbar-nav">
+                            <li class="active"><a href="#">首页</a></li>
+                            <li><a href="#">连载动漫</a></li>
+                            <li><a href="#">专题列表</a></li>
+                        </ul>
+                    </div>
+                    </div>
+                </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <section id="slider">
+        <div class="swiper-container">
+            <div class="swiper-wrapper"></div>
+            <!-- 如果需要分页器 -->
+            <div class="swiper-pagination"></div>
+        </div>
+    </section>
+    <section id="tab">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xs-3 text-center turn on" id="new-continue">新增连载</div>
+                <div class="col-xs-3 text-center turn" id="new-over">新增完结</div>
+                <div class="col-xs-3 text-center turn" id="recommend-continue">推荐连载</div>
+                <div class="col-xs-3 text-center turn" id="recommend-over">推荐完结</div>
+            </div>
+        </div>
+    </section>
+    <section id="main-show">
+        <ul class="content"></ul>
+    </section>
+    <script src="./lib/jQuery/jquery-3.1.0.min.js"></script>
+    <script src="./lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src="./lib/swiper/js/swiper.jquery.min.js"></script>
+    <script src="./lib/template/template-native.js"></script>
+    <script src="./js/index.js"></script>
+
+    <script type="text/template" id="slierId">
+        <% for(var i = 0; i < items.length ; i++){ %>
+            <div class="swiper-slide">
+                <img src="<%=items[i].img%>">
+                <p><%=items[i].title%></p>
+            </div>
+        <% } %>
+    </script>
+
+    <script type="text/template" id="ContentId">
+        <% for(var i = 0; i < list.length ; i++){ %>
+            <li>
+                <a href="<%=list[i].url%>">
+                    <img src="<%=list[i].img%>">
+                    <p><%=list[i].update%></p>
+                    <span><%=list[i].name%></span>
+                </a>
+            </li>
+        <% } %>
+    </script>
+
+    <script>
+        var mySwiper = new Swiper ('.swiper-container', {
+            autoplay: 5000,
+            loop: true,
+            // 如果需要分页器
+            pagination: '.swiper-pagination',
+            paginationClickable: true,
+            observer:true,//修改swiper自己或子元素时，自动初始化swiper
+    	    observeParents:true,//修改swiper的父元素时，自动初始化swiper
+        })        
+    </script>
+</body>
+</html>
